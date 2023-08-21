@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-qa
+  namespace: blue-green
+spec:
+  tls:
+    - hosts:
+      - "example.com"
+  rules:
+  - host: "qa.example.com"
+    http:
+      paths:
+      - backend:
+          service:
+            name: green
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+
